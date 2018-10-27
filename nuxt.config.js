@@ -22,12 +22,13 @@ module.exports = {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: { color: '#9ccc65', height: '10px' },
 
   /*
   ** Global CSS
   */
   css: [
+      { src: '~/assets/theme.scss', lang: 'scss'}
   ],
 
   /*
