@@ -13,7 +13,9 @@
             style="margin-top: 1em;" 
             md-with-hover>
             <md-ripple>
-              <md-card-media md-ratio="16:9">
+              <md-card-media 
+                v-if="headline.urlToImage"
+                md-ratio="16:9">
                 <img 
                   :src="headline.urlToImage" 
                   :alt="headline.title">
