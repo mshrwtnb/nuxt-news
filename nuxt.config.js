@@ -11,12 +11,16 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: pkg.description }
+      { hid: 'description', name: 'description', content: pkg.description },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: '//fonts.googleapis.com/css?family=Roboto:400,500,700,400italic|Material+Icons' }
-    ]
+      {
+        rel: 'stylesheet',
+        href:
+          '//fonts.googleapis.com/css?family=Roboto:400,500,700,400italic|Material+Icons',
+      },
+    ],
   },
 
   /*
@@ -27,29 +31,29 @@ module.exports = {
   /*
   ** Global CSS
   */
-  css: [
-      { src: '~/assets/theme.scss', lang: 'scss'}
-  ],
+  css: [{ src: '~/assets/theme.scss', lang: 'scss' }],
 
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: [
-    { src: '~/plugins/vue-material' }
-  ],
+  plugins: [{ src: '~/plugins/vue-material' }, { src: '~/plugins/axios' }],
 
   /*
   ** Nuxt.js modules
   */
   modules: [
     // Doc: https://github.com/nuxt-community/axios-module#usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
   ],
   /*
   ** Axios module configuration
   */
   axios: {
-    // See https://github.com/nuxt-community/axios-module#options
+    credentials: true,
+  },
+
+  env: {
+    newsAPIKey: process.env.NEWS_API_KEY,
   },
 
   /*
@@ -66,9 +70,9 @@ module.exports = {
           enforce: 'pre',
           test: /\.(js|vue)$/,
           loader: 'eslint-loader',
-          exclude: /(node_modules)/
+          exclude: /(node_modules)/,
         })
       }
-    }
-  }
+    },
+  },
 }
