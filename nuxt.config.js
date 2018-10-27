@@ -15,7 +15,11 @@ module.exports = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: '//fonts.googleapis.com/css?family=Roboto:400,500,700,400italic|Material+Icons' }
+      {
+        rel: 'stylesheet',
+        href:
+          '//fonts.googleapis.com/css?family=Roboto:400,500,700,400italic|Material+Icons'
+      }
     ]
   },
 
@@ -27,16 +31,12 @@ module.exports = {
   /*
   ** Global CSS
   */
-  css: [
-      { src: '~/assets/theme.scss', lang: 'scss'}
-  ],
+  css: [{ src: '~/assets/theme.scss', lang: 'scss' }],
 
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: [
-    { src: '~/plugins/vue-material' }
-  ],
+  plugins: [{ src: '~/plugins/vue-material' }],
 
   /*
   ** Nuxt.js modules
