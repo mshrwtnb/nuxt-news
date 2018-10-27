@@ -52,6 +52,10 @@ module.exports = {
     // See https://github.com/nuxt-community/axios-module#options
   },
 
+  env: {
+    newsAPIKey: process.env.NEWS_API_KEY
+  },
+
   /*
   ** Build configuration
   */
