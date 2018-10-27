@@ -49,7 +49,7 @@ module.exports = {
   ** Axios module configuration
   */
   axios: {
-    // See https://github.com/nuxt-community/axios-module#options
+    credentials: true
   },
 
   env: {
