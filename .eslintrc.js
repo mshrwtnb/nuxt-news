@@ -8,7 +8,7 @@ module.exports = {
     parser: 'babel-eslint'
   },
   extends: [
-    'plugin:vue/recommended',
+    'plugin:vue/essential',
     'plugin:prettier/recommended' // 必ず最後
   ],
   // required to lint *.vue files
@@ -18,6 +18,7 @@ module.exports = {
   ],
   // add your custom rules here
   rules: {
+    'max-attributes-per-line': 'off',
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     "prettier/prettier": [
