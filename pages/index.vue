@@ -180,6 +180,11 @@ export default {
         `/api/top-headlines?country=us&category=${this.category}`
       )
     },
+
+    changeCountry(country) {
+      // storeのsetCountryメソッドを呼ぶ
+      this.$store.commit('setCountry', country)
+    },
   },
 }
 </script>
