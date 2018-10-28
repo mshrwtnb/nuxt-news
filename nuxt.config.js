@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const pkg = require('./package')
 
 module.exports = {
@@ -45,6 +47,7 @@ module.exports = {
     // Doc: https://github.com/nuxt-community/axios-module#usage
     '@nuxtjs/axios',
     '@nuxtjs/proxy',
+    '@nuxtjs/dotenv',
   ],
   /*
   ** Axios module configuration
@@ -59,6 +62,15 @@ module.exports = {
       target: 'http://newsapi.org/v2/',
       pathRewrite: {
         '^/api/': '',
+      },
+    },
+
+    '/register/': {
+      target: `https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=${
+        process.env.FIREBASE_API_KEY
+      }`,
+      pathRewrite: {
+        '^/register/': '',
       },
     },
   },
