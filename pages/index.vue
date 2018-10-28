@@ -170,6 +170,11 @@ export default {
     loading() {
       return this.$store.getters.loading
     },
+
+    country() {
+      return this.$store.getters.country
+    },
+  },
   },
 
   methods: {
