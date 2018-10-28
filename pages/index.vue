@@ -175,6 +175,15 @@ export default {
       return this.$store.getters.country
     },
   },
+
+  watch: {
+    // Countryの値が変化
+    async country() {
+      await this.$store.dispatch(
+        'loadHeadlines',
+        `/api/top-headlines?country=${this.country}&category=${this.category}`
+      )
+    },
   },
 
   methods: {
