@@ -6,6 +6,7 @@ const createStore = () => {
     state: {
       headlines: [],
       loading: false,
+      token: '',
       category: '',
       country: 'us',
     },
@@ -18,6 +19,10 @@ const createStore = () => {
 
       setLoading(state, loading) {
         state.loading = loading
+      },
+
+      setToken(state, token) {
+        state.token = token
       },
 
       setCategory(state, category) {
@@ -33,6 +38,7 @@ const createStore = () => {
     getters: {
       headlines: state => state.headlines,
       loading: state => state.loading,
+      isAuthenticated: state => !!state.token,
       category: state => state.category,
       country: state => state.country,
     },
@@ -54,7 +60,7 @@ const createStore = () => {
             '/register/',
             userPayload
           )
-          console.log(authUserData)
+          commit('setToken', authUserData.idToken)
           commit('setLoading', false)
         } catch (err) {
           console.error(err)
