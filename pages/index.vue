@@ -18,13 +18,11 @@
         <md-button to="/register">Register</md-button>
         <md-button 
           class="md-accent" 
-          @click="showSidepanel = true">Categories</md-button>
       </div>
     </md-toolbar>
 
     <!-- News Categories(Right Drawer) -->
     <md-drawer 
-      :md-active.sync="showSidepanel" 
       class="md-right" 
       md-fixed>
       <md-toolbar :md-elevation="1">
@@ -111,7 +109,6 @@
 <script>
 export default {
   data: () => ({
-    showSidepanel: false,
     newsCategories: [
       { name: 'Top Headlines', path: '', icon: 'today' },
       { name: 'Technology', path: 'technology', icon: 'keyboard' },
