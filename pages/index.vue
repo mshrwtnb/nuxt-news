@@ -25,6 +25,30 @@
       </div>
     </md-toolbar>
 
+    <!-- Personal News Feed(Left Drawer) -->
+    <md-drawer 
+      :md-active.sync="showLeftSidepanel" 
+      md-fixed>
+      <md-toolbar md-elevation="1">
+        <span class="md-title">Personal Feed</span>
+        <md-progress-bar 
+          v-if="loading" 
+          md-mode="indeterminate"/>
+
+        <md-field>
+          <label for="country">Country</label>
+          <md-select 
+            id="country" 
+            :value="country"
+            name="country"
+            @input="changeCountry">
+            <md-option value="us">US</md-option>
+            <md-option value="jp">Japan</md-option>
+          </md-select>
+        </md-field>
+      </md-toolbar>
+    </md-drawer>
+
     <!-- News Categories(Right Drawer) -->
     <md-drawer 
       :md-active.sync="showRightSidepanel" 
