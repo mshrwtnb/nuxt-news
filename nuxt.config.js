@@ -64,6 +64,15 @@ module.exports = {
         '^/api/': '',
       },
     },
+
+    '/register/': {
+      target: `https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=${
+        process.env.FIREBASE_API_KEY
+      }`,
+      pathRewrite: {
+        '^/register/': '',
+      },
+    },
   },
 
   env: {
