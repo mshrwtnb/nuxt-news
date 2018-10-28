@@ -152,9 +152,12 @@ export default {
   }),
 
   async fetch({ store }) {
+    // ここはstore.state.country
     await store.dispatch(
       'loadHeadlines',
-      `/api/top-headlines?country=us&category=${store.state.category}`
+      `/api/top-headlines?country=${store.state.country}&category=${
+        store.state.category
+      }`
     )
   },
 
@@ -191,7 +194,7 @@ export default {
       this.$store.commit('setCategory', category)
       await this.$store.dispatch(
         'loadHeadlines',
-        `/api/top-headlines?country=us&category=${this.category}`
+        `/api/top-headlines?country=${this.country}&category=${this.category}`
       )
     },
 
