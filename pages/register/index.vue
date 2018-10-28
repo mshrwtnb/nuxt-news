@@ -13,7 +13,8 @@
           <md-field md-cleareable>
             <label for="email">Email</label>
             <md-input 
-              id="mail" 
+              id="mail"
+              :disabled="loading"
               v-model="form.email" 
               type="email" 
               name="email" 
@@ -23,6 +24,7 @@
             <label for="password">Password</label>
             <md-input 
               id="password" 
+              :disabled="loading"
               v-model="form.password" 
               type="password" 
               name="password" 
@@ -33,11 +35,15 @@
         <md-card-actions>
           <md-button to="/login">Go to Login</md-button>
           <md-button 
-            class="md-primary md-raised" 
+            :disabled="loading" 
+            class="md-primary md-raised"   
             type="submit">Submit</md-button>
         </md-card-actions>
       </form>
 
+      <md-snackbar :md-active.sync="isAuthenticated">
+        {{ form.email }} was successfully registered!
+      </md-snackbar>
     </md-card>
   </div>
 </template>
@@ -50,6 +56,24 @@ export default {
       password: '',
     },
   }),
+
+  computed: {
+    loading() {
+      return this.$store.getters.loading
+    },
+
+    isAuthenticated() {
+      return this.$store.getters.isAuthenticated
+    },
+  },
+
+  watch: {
+    isAuthenticated(value) {
+      if (value) {
+        setTimeout(() => this.$router.push('/'), 2000)
+      }
+    },
+  },
 
   methods: {
     async registerUser() {
