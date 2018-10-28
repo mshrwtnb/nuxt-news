@@ -7,6 +7,7 @@ const createStore = () => {
       headlines: [],
       loading: false,
       category: '',
+      country: 'us',
     },
 
     // setter
@@ -22,6 +23,10 @@ const createStore = () => {
       setCategory(state, category) {
         state.category = category
       },
+
+      setCountry(state, country) {
+        state.country = country
+      },
     },
 
     // getter
@@ -29,6 +34,7 @@ const createStore = () => {
       headlines: state => state.headlines,
       loading: state => state.loading,
       category: state => state.category,
+      country: state => state.country,
     },
 
     actions: {
