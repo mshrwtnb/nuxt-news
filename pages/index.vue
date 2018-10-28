@@ -84,6 +84,7 @@ export default {
   async fetch({ store }) {
     await store.dispatch('loadHeadlines', '/api/top-headlines?country=us')
   },
+
   computed: {
     headlines() {
       return this.$store.getters.headlines

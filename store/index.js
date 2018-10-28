@@ -18,6 +18,7 @@ const createStore = () => {
         commit('setHeadlines', articles)
       },
     },
+
     getters: {
       headlines: state => state.headlines,
     },
