@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const pkg = require('./package')
 
 module.exports = {
@@ -45,6 +47,7 @@ module.exports = {
     // Doc: https://github.com/nuxt-community/axios-module#usage
     '@nuxtjs/axios',
     '@nuxtjs/proxy',
+    '@nuxtjs/dotenv',
   ],
   /*
   ** Axios module configuration
