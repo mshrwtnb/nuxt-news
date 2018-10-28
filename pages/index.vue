@@ -12,7 +12,7 @@
 
       <nuxt-link 
         class="md-primary md-title" 
-        to="/">Nuxt news</nuxt-link>
+        to="/">Nuxt News</nuxt-link>
       <div class="md-toolbar-section-end">
         <md-button to="/login">Login</md-button>
         <md-button to="/register">Register</md-button>
