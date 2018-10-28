@@ -8,9 +8,11 @@
       </md-card-header>
 
       <!-- Register Form -->
-      <form @submit.prevent="registerUser">
+      <form @submit.prevent="validateForm">
         <md-card-content>
-          <md-field md-cleareable>
+          <md-field 
+            :class="getValidationClass('email')" 
+            md-cleareable>
             <label for="email">Email</label>
             <md-input 
               id="mail"
@@ -19,9 +21,16 @@
               type="email" 
               name="email" 
               autocomplete="email"/>
+            <span 
+              v-if="!$v.form.email.required" 
+              class="md-error">The email is required</span>
+            <span 
+              v-else-if="!$v.form.email.email" 
+              class="md-error">Invalid email</span>
           </md-field>
-          <md-field>
-            <label for="password">Password</label>
+
+          <md-field :class="getValidationClass('password')">
+            <label for="password" >Password</label>
             <md-input 
               id="password" 
               :disabled="loading"
@@ -29,6 +38,15 @@
               type="password" 
               name="password" 
               autocomplete="password"/>
+            <span 
+              v-if="!$v.form.password.required" 
+              class="md-error">The password is required</span>
+            <span 
+              v-else-if="!$v.form.password.minLength" 
+              class="md-error">Password too short</span>
+            <span 
+              v-else-if="!$v.form.password.maxLength" 
+              class="md-error">Password too long</span>
           </md-field>
         </md-card-content>
 
@@ -49,8 +67,27 @@
 </template>
 
 <script>
+import { validationMixin } from 'vuelidate'
+import { required, email, minLength, maxLength } from 'vuelidate/lib/validators'
+
 export default {
   middleware: 'auth',
+
+  mixins: [validationMixin],
+
+  validations: {
+    form: {
+      email: {
+        required,
+        email,
+      },
+      password: {
+        required,
+        minLength: minLength(6),
+        maxLength: maxLength(20),
+      },
+    },
+  },
 
   data: () => ({
     form: {
@@ -78,6 +115,13 @@ export default {
   },
 
   methods: {
+    validateForm() {
+      this.$v.$touch()
+      if (!this.$v.$invalid) {
+        this.registerUser()
+      }
+    },
+
     async registerUser() {
       await this.$store.dispatch('authenticateUser', {
         // Firebaseで必要なBody Payload
@@ -85,6 +129,15 @@ export default {
         password: this.form.password,
         returnSecureToken: true,
       })
+    },
+
+    getValidationClass(fieldName) {
+      const field = this.$v.form[fieldName]
+      if (field) {
+        return {
+          'md-invalid': field.$invalid && field.$dirty,
+        }
+      }
     },
   },
 }
